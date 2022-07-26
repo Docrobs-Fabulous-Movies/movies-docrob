@@ -8,6 +8,7 @@ import Register from "./views/Register.js"
 import {RegisterEvent} from "./views/Register.js";
 import UserIndex, {UserEvents} from "./views/User.js";
 import Logout, {LogoutEvents} from "./views/Logout.js";
+import addMovieHTML, {addMovieJS} from "./views/AddMovie.js";
 
 /**
  * Returns the route object for a specific route based on the given URI
@@ -29,6 +30,13 @@ export default function router(URI) {
             uri: '/',
             title: 'My Movies',
             viewEvent: HomeEvents
+        },
+        '/addMovie': {
+            returnView: addMovieHTML,
+            state: {},
+            uri: '/addMovie',
+            title: 'Add Movie',
+            viewEvent: addMovieJS
         },
         '/logout': {
             returnView: Logout,

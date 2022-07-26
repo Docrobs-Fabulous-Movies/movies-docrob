@@ -28,6 +28,10 @@ function addListenerToNavLinks() {
         if(event.target.matches('label')) {
             return;
         }
+        // needed this to process the fontawesome <i> in an <a> getting clicked
+        if(event.target.matches('i')) {
+            return;
+        }
         event.preventDefault();
         if (event.target.dataset['link'] !== undefined) {
             const URI = event.target.href.substring(location.origin.length);

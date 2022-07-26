@@ -1,8 +1,6 @@
 import {showNotification} from "../messaging.js";
 import {getUser} from "../auth.js";
 
-const BASE_URI = `${BACKEND_HOST}/api/s3/download`;
-
 export default function Home(props) {
     let html = getTopHTML();
     html += getMoviesHTML(props.movies);
@@ -16,7 +14,7 @@ function getTopHTML() {
             <h1>My "favorite" Movies</h1>
         </header>
         <main>
-            <a href="/addMovie"><i class="text-success fs-4 fas fa-plus-square"></i></a>
+            <a data-link href="/addMovie"><i class="text-success fs-4 fas fa-plus-square"></i></a>
     `;
 }
 
