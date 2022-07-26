@@ -1,3 +1,3 @@
-# Jalopy
+# Docrob's Extremely Ugly Movie Project
 
-Jalopy is a tiny (toy) SPA framework for Codeup Webdev v3 students.
+### Don't judge me!
