@@ -18,9 +18,16 @@ export default function router(URI) {
     const routes = {
         '/': {
             returnView: Home,
-            state: {},
+            state: {
+                movies: {
+                    url: "https://plain-watery-sea.glitch.me/movies",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+            },
             uri: '/',
-            title: 'Home',
+            title: 'My Movies',
             viewEvent: HomeEvents
         },
         '/logout': {

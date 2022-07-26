@@ -4,27 +4,43 @@ import {getUser} from "../auth.js";
 const BASE_URI = `${BACKEND_HOST}/api/s3/download`;
 
 export default function Home(props) {
+    let html = getTopHTML();
+    html += getMoviesHTML(props.movies);
+    html += getBottomHTML();
+    return html;
+}
+
+function getTopHTML() {
     return `
         <header>
-            <h1>Home Page</h1>
+            <h1>My "favorite" Movies</h1>
         </header>
         <main>
-            <div>
-                <p>
-                    This is the home page text.
-                </p>    
-            </div>
-        </main>
+            <a href="/addMovie"><i class="text-success fs-4 fas fa-plus-square"></i></a>
     `;
 }
 
-export function HomeEvents() {
-    // TODO: use an enum for message type
-    // const authority = getUserRole();
-    const user = getUser();
-    if(!user) {
-        showNotification("Welcome visitor", "secondary");
-    } else {
-        showNotification("Welcome " + user.userName, "info");
+function getMoviesHTML(movies) {
+    let html = "";
+    for (let i = 0; i < movies.length; i++) {
+        html += `
+            <div class="card">
+                <div class="card-body">
+                    <p>${movies[i].title}</p>
+                    <a class="movie-button" href="/editMovie"><i class="text-information fs-4 fas fa-edit"></i></a>
+                    <a class="movie-button" href="/deleteMovie"><i class="text-danger fs-4 fas fa-trash-alt"></i></a>
+                </div>
+            </div>
+            `;
     }
+    return html;
+}
+
+function getBottomHTML() {
+    return `
+        </main>`;
+}
+
+export function HomeEvents() {
+
 }
