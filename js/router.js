@@ -16,6 +16,16 @@ import addMovieHTML, {addMovieJS} from "./views/AddMovie.js";
  * @returns {*}
  */
 export default function router(URI) {
+    // console.log(URI);
+    // if there is a path variable on the end, remove it and load it into props
+    const URIParts = URI.split("/");
+    let id = 0;
+    if(URIParts[URIParts.length - 1] != '' && !isNaN(URIParts[URIParts.length - 1])) {
+        // console.log(URIParts);
+        id = URIParts[URIParts.length - 1];
+        URI = URIParts.slice(0, URIParts.length - 1).join("/");
+    }
+
     const routes = {
         '/': {
             returnView: Home,
@@ -36,6 +46,15 @@ export default function router(URI) {
             state: {},
             uri: '/addMovie',
             title: 'Add Movie',
+            viewEvent: addMovieJS
+        },
+        '/editMovie': {
+            returnView: addMovieHTML,
+            state: {
+                id: id
+            },
+            uri: `/editMovie/${id}`,
+            title: 'Edit Movie',
             viewEvent: addMovieJS
         },
         '/logout': {

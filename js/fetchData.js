@@ -9,11 +9,21 @@
 const BASE_URI = `${BACKEND_HOST}`;
 
 export default function fetchData(state, request) {
+    const props = {};
+
     const promises = [];
     //TODO: this needs to be moved to a prop file or env variable
 
     console.log("got to fetch data");
     for (let pieceOfState of Object.keys(state)) {
+        // console.log(pieceOfState);
+        if(pieceOfState === "id") {
+            // console.log(pieceOfState + " " + state[pieceOfState]);
+            props.id = state[pieceOfState];
+            return new Promise((resolve, reject) => {
+                resolve(props);
+            });
+        }
         let url = BASE_URI + state[pieceOfState];
         if(typeof state[pieceOfState] !== "string") {
             url = BASE_URI + state[pieceOfState].url;
@@ -38,7 +48,6 @@ export default function fetchData(state, request) {
                 }));
     }
     return Promise.all(promises).then(propsData => {
-        const props = {};
         Object.keys(state).forEach((key, index) => {
             props[key] = propsData[index];
         });
